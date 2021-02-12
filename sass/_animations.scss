@@ -1,0 +1,124 @@
+// background color animation
+.color-change-2x {
+  height: 100%;
+  -webkit-animation: color-change-2x 3s linear infinite alternate both;
+  animation: color-change-2x 3s linear infinite alternate both;
+}
+
+@keyframes color-change-2x {
+  0% {
+    background-color: var(--color-primary-light);
+  }
+  100% {
+    background-color: var(--color-primary-dark);
+  }
+}
+@-webkit-keyframes color-change-2x {
+  0% {
+    background-color: var(--color-primary-light);
+  }
+  100% {
+    background-color: var(--color-primary-dark);
+  }
+}
+
+// logo animation
+
+.waitAnimate {
+  animation: waitAnimate 3s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+//we use the perspective to create the rotate effect
+@keyframes waitAnimate {
+  0% {
+    transform: perspective(100px) rotate(0deg);
+  }
+  16.667% {
+    transform: perspective(100px) rotateX(180deg) rotateY(0);
+  }
+  33.333% {
+    transform: perspective(100px) rotateX(180deg) rotateY(180deg);
+  }
+  50% {
+    transform: perspective(100px) rotateX(0) rotateY(180deg);
+  }
+  66.667% {
+    transform: perspective(100px) rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: perspective(100px) rotateX(0) rotateY(0);
+  }
+}
+
+// pulsate animation
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.3);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+@-webkit-keyframes vibrate {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+}
+@keyframes vibrate {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+}

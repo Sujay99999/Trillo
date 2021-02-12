@@ -1,0 +1,66 @@
+// Media query manager
+
+// media query parameters
+
+// bp-largest = 1800px; 112.5em;
+// bp-large = 1200px;   75em;
+// bp-medium = 750px;   46.875px;
+// bp-small = 600px;    37.5em
+// bp-smallest = 300px; 18.75em;
+
+@mixin queryManager($breakpoint) {
+  //we must use a if and else directive with the content directive
+
+  @if $breakpoint == bp-tiniest {
+    // 380px => 380/16 = 23.75
+    @media only screen and (max-width: 23.75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == bp-smallest {
+    // 475px => 475/16 = 29.6875
+    @media only screen and (max-width: 29.6875em) {
+      @content;
+    }
+  }
+  @if $breakpoint == bp-small {
+    // 650px => 650/16 = 40.625
+    @media only screen and (max-width: 40.625em) {
+      @content;
+    }
+  }
+  @if $breakpoint == bp-medsmall {
+    // 775px => 775/16 = 48.43
+    @media only screen and (max-width: 48.43em) {
+      @content;
+    }
+  }
+  @if $breakpoint == bp-medium {
+    // 900px => 900/16 = 56.25
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+  @if $breakpoint == bp-medlarge {
+    // 1080px => 1080/16 = 67.5
+    @media only screen and (max-width: 67.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == bp-large {
+    // 1200px => 1200/16 = 75
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+
+  // =================================================================
+  // we are using desktop-first strategy, where the desktop width is in the range of 1200-1800px
+
+  @if $breakpoint == bp-largest {
+    //1800px => 1800/16 = 112.5
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}

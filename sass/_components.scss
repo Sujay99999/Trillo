@@ -1,0 +1,616 @@
+// we only specify the components, but not the layout stuff such as header
+
+.logo {
+  height: 3.25rem;
+  margin-left: 2rem;
+}
+
+.search {
+  font-size: 1.4rem;
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include queryManager(bp-small) {
+    flex: 0 0 100%;
+    order: 10;
+    padding: 0.7rem;
+    margin-bottom: 2rem;
+  }
+  @include queryManager(bp-smallest) {
+    font-size: 1.2rem;
+  }
+
+  &__input {
+    width: 90%;
+    padding: 0.7rem 2rem;
+    margin-right: -3rem;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    border-radius: 100px;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    transition: all 0.2s;
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: var(--color-grey-light-4);
+    }
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: var(--color-grey-light-3);
+
+      &::-webkit-input-placeholder {
+        font-weight: 100;
+        color: var(--color-grey-light-5);
+      }
+    }
+  }
+
+  &__button {
+    margin-top: 0.5rem;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__icon {
+    height: 2.25rem;
+    width: 2.25rem;
+    fill: var(--color-grey-dark-3);
+  }
+}
+
+.user {
+  // these are the flex-container prop i.e container == user
+  display: flex;
+  align-items: stretch;
+
+  // these are the flex-item prop i.e container == header
+  align-self: stretch;
+
+  //we need to select all the children of the user and specify some general properties
+  & > * {
+    padding: 1.5rem;
+    @include queryManager(bp-medlarge) {
+      margin-bottom: 1rem;
+    }
+
+    &:hover {
+      background-color: var(--color-grey-light-3);
+    }
+  }
+
+  &__icon-box {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    fill: var(--color-grey-dark-2);
+  }
+
+  &__notification {
+    color: #fff;
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+
+    & > * {
+      padding: 1rem;
+    }
+
+    &--photo {
+      height: 6.25rem;
+      width: 6.25rem;
+      border-radius: 50%;
+
+      @include queryManager(bp-medlarge) {
+        height: 5rem;
+        width: 5rem;
+      }
+    }
+    &--name {
+      font-size: inherit;
+    }
+  }
+}
+
+.nav-sidebar {
+  margin-top: 2rem;
+
+  @include queryManager(bp-medium) {
+    display: flex;
+    margin: 0;
+  }
+
+  &__item {
+    list-style-type: none;
+    padding: 1.5rem;
+
+    //adding animation to the item
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 0.25rem;
+    }
+
+    @include queryManager(bp-medium) {
+      flex: 1;
+    }
+  }
+
+  &__item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--color-primary);
+    transition: transform 0.2s, width cubic-bezier(0.8, 0, 0.24, 0.26) 0.3s 0.2s;
+    transform: scaleY(0);
+  }
+
+  &__item:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: scaleY(1);
+    transform-origin: center;
+    width: 100%;
+  }
+
+  &__link:link,
+  &__link:visited {
+    text-decoration: none;
+    color: var(--color-grey-light-1);
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    margin: 0.25rem;
+
+    //to use the z-index with respect to others, we have to use the relative position
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+
+    @include queryManager(bp-small) {
+      flex-direction: column;
+    }
+
+    & span {
+      @include queryManager(bp-tiniest) {
+        display: none;
+      }
+    }
+  }
+
+  &__icon {
+    height: 1.75rem;
+    width: 1.75rem;
+    fill: #fff;
+    margin: 0 2rem;
+  }
+}
+
+.legal-text {
+  padding: 2.75rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-grey-light-1);
+
+  @include queryManager(bp-medium) {
+    display: none;
+  }
+}
+
+.gallery {
+  display: flex;
+
+  &__photo {
+    max-width: 100%;
+    //this property was only used to remove the small padding that occurs for the inline elements as img is one.
+    display: block;
+  }
+}
+
+.hotel-nav {
+  border-bottom: var(--border-line-light);
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+
+  &__heading {
+    font-size: 2.25rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1rem 2.75rem;
+
+    @include queryManager(bp-smallest) {
+      font-size: 2rem;
+    }
+  }
+
+  &__icon {
+    margin-right: auto;
+    display: flex;
+  }
+
+  &__location-icon {
+    margin-right: 1.25rem;
+  }
+
+  &__icon-box {
+    height: 1.75rem;
+    width: 1.75rem;
+    fill: var(--color-primary);
+
+    @include queryManager(bp-smallest) {
+      height: 1.45rem;
+      width: 1.45rem;
+    }
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+  }
+
+  &__button {
+    padding: 1.5rem 2rem;
+
+    @include queryManager(bp-smallest) {
+      padding: 1rem 1.5rem;
+    }
+  }
+
+  &__ratings {
+    margin-left: 2rem;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    background-color: var(--color-primary);
+    color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-average {
+      font-size: 2.25rem;
+
+      @include queryManager(bp-smallest) {
+        font-size: 1.75rem;
+      }
+    }
+
+    &-count {
+      @include queryManager(bp-smallest) {
+        display: none;
+      }
+    }
+  }
+}
+
+.button-animated {
+  border: none;
+  border-radius: 100px;
+  text-transform: uppercase;
+  background-color: inherit;
+  color: var(--color-primary);
+  transition: all 0.2s;
+
+  //this notation is element>element eg: div>p ==> this includes all the p where the parent is a div tag
+  & > span {
+    margin-left: 0.7rem;
+  }
+
+  &:hover {
+    color: var(--color-grey-dark-2);
+    & > span {
+      margin-left: 1.2rem;
+    }
+  }
+
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite linear;
+  }
+}
+
+.hotel-main-content {
+  padding: 5.5rem 5.5rem 4rem 5.5rem;
+  font-size: 1.4rem;
+
+  display: flex;
+
+  @include queryManager(bp-medsmall) {
+    padding: 2.5rem;
+  }
+  @include queryManager(bp-small) {
+    flex-direction: column;
+  }
+}
+
+.hotel-content {
+  flex: 0 0 66.6%;
+  margin-right: 7rem;
+
+  @include queryManager(bp-medsmall) {
+    margin-right: 3.5rem;
+  }
+  @include queryManager(bp-small) {
+    margin-right: 0rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.hotel-description {
+  padding: 3rem;
+  background-color: #fff;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.paragraph {
+  margin-bottom: 1.5rem;
+
+  @include queryManager(bp-medsmall) {
+    margin-bottom: 1rem;
+  }
+}
+
+.list {
+  list-style-type: none;
+  padding: 3.5rem 0;
+  border-bottom: var(--border-line-dark);
+  border-top: var(--border-line-dark);
+
+  display: flex;
+  flex-wrap: wrap;
+
+  @include queryManager(bp-medsmall) {
+    padding: 2rem 0;
+  }
+}
+
+.list-items {
+  padding: 0.5rem;
+  padding-left: 1rem;
+
+  flex: 0 0 50%;
+
+  &::before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    margin-right: 1rem;
+    display: inline-block;
+    background-color: var(--color-primary);
+    mask-image: url(../img/chevron-thin-right.svg);
+    mask-size: cover;
+    -webkit-mask-image: url(../img/chevron-thin-right.svg);
+    -webkit-mask-size: cover;
+  }
+}
+
+.recommendation {
+  padding: 2rem;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  &__people {
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    margin-right: auto;
+  }
+
+  &__gallery {
+    box-sizing: content-box;
+
+    display: flex;
+  }
+
+  &__photo {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 3px solid #fff;
+
+    &:not(:last-child) {
+      margin-right: -1rem;
+    }
+  }
+}
+
+.hotel-reviews {
+  flex: 1;
+
+  @include queryManager(bp-medsmall) {
+    display: flex;
+  }
+  @include queryManager(bp-smallest) {
+    flex-direction: column;
+  }
+}
+
+.review {
+  background-color: #fff;
+  margin-bottom: 2rem;
+  padding: 2rem;
+
+  // we are setting the parent to relative for the glyph
+  position: relative;
+
+  @include queryManager(bp-medsmall) {
+    padding: 1.5rem;
+  }
+  @include queryManager(bp-small) {
+    padding: 1.5rem;
+    margin-bottom: 0rem;
+  }
+  @include queryManager(bp-smallest) {
+    padding: 3rem;
+    margin: 1rem 2rem 1.25rem 2rem;
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: 3.5rem;
+
+    @include queryManager(bp-medsmall) {
+      margin-bottom: 2rem;
+    }
+    @include queryManager(bp-small) {
+      margin-right: 1rem;
+      //this is to remove the conflicting property from the previous media query
+      margin-bottom: 0rem;
+    }
+    @include queryManager(bp-smallest) {
+      //this is to remove the conflicting property from the previous media query
+      margin-right: 2rem;
+    }
+  }
+
+  &__paragraph {
+    position: relative;
+    z-index: 10;
+
+    font-size: 1.5rem;
+    margin-bottom: 3.5rem;
+
+    @include queryManager(bp-medsmall) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__user {
+    display: flex;
+    justify-content: space-between;
+
+    &--photo {
+      width: 25%;
+      border-radius: 50%;
+
+      display: block;
+
+      @include queryManager(bp-medsmall) {
+        width: 20%;
+      }
+    }
+
+    &--name {
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    &--date {
+      font-size: 1rem;
+    }
+
+    &--rating {
+      flex: 0 0 25%;
+
+      text-align: center;
+      font-size: 2.25rem;
+      font-weight: 300;
+      color: var(--color-primary);
+    }
+  }
+
+  &__button {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1.5rem 2rem;
+
+    @include queryManager(bp-medsmall) {
+      display: none;
+    }
+    @include queryManager(bp-smallest) {
+      display: inline;
+    }
+  }
+
+  &::before {
+    // we are adding a glyph using css and modifying it as per requirements
+    content: "\201C";
+    font-family: sans-serif;
+    font-size: 1000%;
+    font-stretch: expanded;
+    color: var(--color-grey-light-2);
+    z-index: 1;
+
+    position: absolute;
+    top: -16%;
+    left: -2.5%;
+  }
+}
+
+.hotel-booking {
+  background-color: #fff;
+  padding-bottom: 2rem;
+
+  font-size: 1.75rem;
+  font-weight: 600;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__description {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  &__button {
+    align-self: center;
+    border: none;
+    padding: 1.5rem 2.25rem;
+    background-image: linear-gradient(
+      to right bottom,
+      var(--color-primary-light),
+      var(--color-primary-dark)
+    );
+    border-radius: 100px;
+    font-weight: 400;
+    font-size: inherit;
+
+    &:hover {
+      outline: none;
+      -webkit-animation: vibrate 0.3s linear infinite both;
+      animation: vibrate 0.3s linear infinite both;
+    }
+  }
+}

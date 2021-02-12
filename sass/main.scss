@@ -1,0 +1,9 @@
+//This is the main scss file , which include the partial files
+
+// BEWARE:  the order of the partial files is very important. Hence the 7 in 1 architecture is very important
+
+@import "mediaQueries";
+@import "base";
+@import "layout";
+@import "components";
+@import "animations";

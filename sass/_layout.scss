@@ -1,0 +1,53 @@
+//In this file, we define the basic layout required for the page
+
+.container {
+  //these are the general properties used to center the main content in the page
+  max-width: 120rem;
+  margin: 8rem auto;
+
+  background-color: var(--color-grey-light-2);
+  box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.3);
+
+  @include queryManager(bp-medlarge) {
+    margin: 0;
+
+    // so, when the width of window is less than 1200px, we say the conatiner should take up all width
+    // so, we give max-width to 100% rather than width to 100%, becuase it can resize itself
+    max-width: 100%;
+  }
+}
+
+.header {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: var(--border-line-light);
+
+  @include queryManager(bp-small) {
+    flex-wrap: wrap;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: stretch;
+  //flex-direction: row;
+  @include queryManager(bp-medium) {
+    flex-direction: column;
+  }
+}
+
+.sidebar {
+  flex: 0 0 18%;
+  background-color: var(--color-grey-dark-1);
+
+  //applying the flex to the conatiner - sidebar, aligning the items nav-sidebar and legal text
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-content {
+  flex: 1;
+}
